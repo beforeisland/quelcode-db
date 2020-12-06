@@ -46,7 +46,7 @@ CREATE TABLE posts (
 CREATE TABLE tasks (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     content VARCHAR(1000) NOT NULL,
-    person_user_id INT NOT NULL REFERENCES users(id),
+    assingned_user_id INT NOT NULL REFERENCES users(id),
     deadline DATETIME,
     is_done TINYINT(1) DEFAULT 0 NOT NULL,
     is_deleted TINYINT(1) DEFAULT 0 NOT NULL,
