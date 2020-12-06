@@ -11,7 +11,7 @@ CREATE TABLE users (
     updated_at DATETIME NOT NULL
 );
 
-CREATE TABLE chatrooms (
+CREATE TABLE chat_rooms (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     chat_name VARCHAR(100) NOT NULL,
     overview VARCHAR(1000),
@@ -26,9 +26,9 @@ CREATE TABLE chatrooms (
 
 CREATE TABLE participants (
     user_id INT NOT NULL REFERENCES users(id),
-    chatroom_id INT NOT NULL REFERENCES chatrooms(id),
+    chat_room_id INT NOT NULL REFERENCES chat_rooms(id),
     joined_at DATETIME NOT NULL,
-    PRIMARY KEY(user_id, chatroom_id)
+    PRIMARY KEY(user_id, chat_room_id)
 );
 
 CREATE TABLE posts (
@@ -40,7 +40,7 @@ CREATE TABLE posts (
     updated_at DATETIME NOT NULL,
     posted_user_id INT NOT NULL REFERENCES users(id),
     updated_user_id INT NOT NULL REFERENCES users(id),
-    chatroom_id INT NOT NULL REFERENCES chatrooms(id)
+    chat_room_id INT NOT NULL REFERENCES chat_rooms(id)
 );
 
 CREATE TABLE tasks (
@@ -54,5 +54,5 @@ CREATE TABLE tasks (
     updated_at DATETIME NOT NULL,
     created_user_id INT NOT NULL REFERENCES users(id),
     updated_user_id INT NOT NULL REFERENCES users(id),
-    chatroom_id INT NOT NULL REFERENCES chatrooms(id)
+    chat_room_id INT NOT NULL REFERENCES chat_rooms(id)
 );
