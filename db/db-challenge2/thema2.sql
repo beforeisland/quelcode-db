@@ -18,10 +18,10 @@ CREATE TABLE chat_rooms (
     is_enabled_file_sent TINYINT(1) DEFAULT 1 NOT NULL,
     is_enabled_direct_chat TINYINT(1) DEFAULT 0 NOT NULL,
     is_deleted TINYINT(1) DEFAULT 0 NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
     created_user_id INT NOT NULL REFERENCES users(id),
-    updated_user_id INT NOT NULL REFERENCES users(id)
+    updated_user_id INT NOT NULL REFERENCES users(id),
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL
 );
 
 CREATE TABLE participants (
@@ -36,11 +36,11 @@ CREATE TABLE posts (
     content VARCHAR(1000) NOT NULL,
     attachment_file_name VARCHAR(100),
     is_deleted TINYINT(1) DEFAULT 0 NOT NULL,
-    posted_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
+    chat_room_id INT NOT NULL REFERENCES chat_rooms(id),
     posted_user_id INT NOT NULL REFERENCES users(id),
     updated_user_id INT NOT NULL REFERENCES users(id),
-    chat_room_id INT NOT NULL REFERENCES chat_rooms(id)
+    posted_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL
 );
 
 CREATE TABLE tasks (
@@ -50,9 +50,9 @@ CREATE TABLE tasks (
     deadline DATETIME,
     is_done TINYINT(1) DEFAULT 0 NOT NULL,
     is_deleted TINYINT(1) DEFAULT 0 NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
+    chat_room_id INT NOT NULL REFERENCES chat_rooms(id),
     created_user_id INT NOT NULL REFERENCES users(id),
     updated_user_id INT NOT NULL REFERENCES users(id),
-    chat_room_id INT NOT NULL REFERENCES chat_rooms(id)
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL
 );
