@@ -5,5 +5,5 @@ JOIN users AS u
 JOIN chat_rooms AS c
     ON po.chat_room_id = c.id
 WHERE u.is_deleted = 0 AND po.is_deleted = 0
-GROUP BY po.chat_room_id;
+GROUP BY po.chat_room_id
 ORDER BY COUNT(po.chat_room_id) DESC;
